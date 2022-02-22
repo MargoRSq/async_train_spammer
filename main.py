@@ -1,5 +1,4 @@
-from typing import Tuple
-from vkbottle.bot import Bot, rules, Message
+from vkbottle.bot import Bot
 
 from utils.config import TOKEN, GROUP_ID
 from commands import bps
