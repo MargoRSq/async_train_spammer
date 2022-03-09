@@ -1,73 +1,53 @@
-import enum
-import io
-import requests
-import openpyxl
+from utils.timetable_utils import (get_week_num,
+                                   get_day_range,
+                                   ch, nech, days, time)
+from utils.config import PLACES_EVEN, PLACES_ODD
 
-from datetime import date
-from typing import Tuple, Union
+def get_day_timetable(day: int):
+    week_number = get_week_num()
+    week_type = week_number % 2
+    week_timetable = nech if week_type == 1 else ch
+    none_counter = 0
+    places = PLACES_ODD if week_type == 1 else PLACES_EVEN
 
-from db.operations import get_rasp, post_rasp
-
-rasp = get_rasp()
-ch = rasp['ch']
-nech = rasp['nech']
-
-
-async def get_new_timetable(url) -> True | False:
-    try:
-        resp = requests.get(url)
-        bytes = io.BytesIO(resp.read())
-        new_timatable = parse_rasp(bytes)
-        post_rasp(nech=new_timatable[0], ch=new_timatable[1])
-        return True
-    except:
-        return False
-
-
-def parse_rasp(file):
-    ps = openpyxl.reader.excel.load_workbook(file)
-    sheet = ps['Лист1']
-
-    pr_numbers = [3 * i for i in range(1, 31)]
-    ch_array = []
-    nech_array = []
-    for number in pr_numbers:
-        nech_array.append(sheet[f'C{number}'].value)
-        ch_array.append(sheet[f'D{number}'].value)
-
-    return [nech_array, ch_array]
-
-
-def get_day_raps(week: 1|0, day: str):
-    week_timetable = nech if week == 1 else ch
-
-    day_range = get_day_range(day)
-    text = ''
-    for class_name in range(day_range - 5, day_range):
-        text += f"{week_timetable[class_name]}\n"
-
+    day_range = get_day_range(str(day + 1))
+    text = days[day] + f" ({places[day - 1]})" + ' - '
+    text += f'Четная неделя ({week_number})' if week_number != 0 \
+                                                   else f'Нечетная неделя ({week_number})'
+    text += '\n'
+    for class_num in range(day_range - 5, day_range):
+        class_name = week_timetable[class_num][0]
+        if not class_name:
+            none_counter += 1
+        else:
+            text += f"|{time[class_num % 5]}| {class_name} \n"
+    if none_counter == 5:
+        text += 'В этот день пар нет!'
     return text
 
-def get_day_range(day: str):
-    match day:
-        case 'понедельник' | '1' | 'пон':
-            return 5
-        case 'вторник' | '2' | 'вт':
-            return 10
-        case 'среда' | '3' | 'ср':
-            return 15
-        case 'четверг' | '4' | 'чт':
-            return 20
-        case 'пятница' | '5' | 'пт':
-            return 25
-        case 'суббота' | '6' | 'суб':
-            return 30
-        case _:
-            return 0
+def get_range_rasp(week_number=get_week_num(), rng=range(0, 30)):
+    week_timetable = nech if week_number % 2 == 1 else ch
+    none_counter = 0
 
-def get_week_num():
-    first_day = date(2021, 8, 30)
-    today = date.today()
-    delta = (today - first_day).days
-    week_number = (delta // 7) + 1
-    return week_number
+    text = f'Четная неделя ({week_number})' if week_number != 0 \
+                                                   else f'Нечетная неделя ({week_number})'
+    text += '\n'
+    for class_num in rng:
+        text += days[class_num // 5] + '\n' if class_num % 5 == 0 else ''
+        none_counter = 0 if class_num % 5 == 0 else none_counter
+        class_name = week_timetable[class_num][0]
+        if not class_name:
+            none_counter += 1
+        else:
+            text += f"|{time[class_num % 5]}| {class_name} \n"
+        if none_counter == 5:
+            text += 'В этот день пар нет!' + '\n'
+            none_counter = 0
+    return text
+
+def get_weekday_rasp(day: str, week_number: int = get_week_num()):
+    rng = get_day_range(day)
+    if rng:
+        return get_range_rasp(rng=rng, week_number=week_number)
+    else:
+        return "Не нашел такого дня недели"

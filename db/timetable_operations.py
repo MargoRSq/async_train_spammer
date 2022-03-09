@@ -1,3 +1,4 @@
+from sqlite3 import Time
 from sys import argv
 from sqlalchemy import select, insert, update
 
@@ -19,16 +20,12 @@ def get_rasp():
     return {'ch': ch, 'nech': nech}
 
 def post_rasp(ch, nech):
-    with engine.connect() as conn:
-        for class_name in ch:
-            insert_state = (
-                insert(Timetable).
-                values(class_name=class_name,
-                       week=WeekType.ch.value))
-            conn.execute(insert_state)
-        for class_name in nech:
-            insert_state = (
-                insert(Timetable).
-                values(class_name=class_name,
-                       week=WeekType.nech.value))
-            conn.execute(insert_state)
+    lists = {'ch': ch, 'nech': nech}
+    for wtype in ['ch', 'nech']:
+        for class_id, class_name in enumerate(lists[wtype]):
+            class_id = class_id if wtype == 'ch' else class_id + 30
+            pr = Timetable(id=class_id,
+                        class_name=class_name,
+                        week=wtype)
+            session.merge(pr)
+    session.commit()

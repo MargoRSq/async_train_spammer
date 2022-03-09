@@ -1,3 +1,4 @@
+from ast import Str
 import enum
 
 from sqlalchemy import Column, Integer, String, Enum,  Float
@@ -30,7 +31,8 @@ class Timetable(Base):
     __tablename__ = 'timetable'
     __table_args__ = {'extend_existing': True}
 
-    class_name = Column(String(100), primary_key=True)
+    id = Column(Integer, primary_key=True)
+    class_name = Column(String(100))
     week = Column(Enum(WeekType))
 
 
@@ -41,6 +43,14 @@ class Confs(Base):
     pr = Column(String(30), primary_key=True)
     conf_id = Column(String(30))
     conf_password = Column(String(30))
+    conf_url = Column(String(200))
 
+class Roster(Base):
+    __tablename__ = 'roster'
+    __table_args__ = {'extend_existing': True}
+
+    id = Column(Integer, primary_key=True)
+    fullname = Column(String(100))
 
 Base.metadata.create_all(engine)
+
