@@ -1,11 +1,6 @@
-from datetime import date, datetime
+from datetime import datetime
 
-from db.timetable_operations import get_rasp
 from utils.config import SEM_START
-
-rasp = get_rasp()
-ch = rasp['ch']
-nech = rasp['nech']
 
 time = ['09:30-11:05', '11:20-12:55', '13:10-14:45', '15:25-17:00', '17:15-18:50']
 days = ['Понедельник',

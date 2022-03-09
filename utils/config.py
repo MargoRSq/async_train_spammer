@@ -1,12 +1,9 @@
-import typing
-
-
 from datetime import date, datetime
 from starlette.config import Config
 
 config = Config(".env")
 
-DATABASE_URL: str = config("SQLALCH_DATABASE_URL")
+DATABASE_URL: str = config("SQLALCH_DATABASE_URL_DOCKER")
 TOKEN: str = config("TOKEN")
 
 GROUP_ID: int = int(config("GROUP_ID"))

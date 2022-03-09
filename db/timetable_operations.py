@@ -1,7 +1,4 @@
-from sqlite3 import Time
-from sys import argv
-from sqlalchemy import select, insert, update
-
+from sqlalchemy import select
 from db.db import engine, session
 from db.models import Timetable, WeekType
 
