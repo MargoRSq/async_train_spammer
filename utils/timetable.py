@@ -7,6 +7,8 @@ def get_day_timetable(day: int):
     week_number = get_week_num()
     week_type = week_number % 2
     week_timetable = nech if week_type == 1 else ch
+    if (len(week_timetable) < 30):
+        return "Во мне нет расписания!"
     none_counter = 0
     places = PLACES_ODD if week_type == 1 else PLACES_EVEN
 
@@ -15,7 +17,7 @@ def get_day_timetable(day: int):
     text += f'Четная неделя ({week_number})' if week_number != 0 \
                                                    else f'Нечетная неделя ({week_number})'
     text += '\n'
-    for class_num in range(day_range - 5, day_range):
+    for class_num in day_range:
         class_name = week_timetable[class_num][0]
         if not class_name:
             none_counter += 1
