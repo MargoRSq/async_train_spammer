@@ -1,3 +1,4 @@
+from ast import Str
 import enum
 
 from sqlalchemy import Column, Integer, String, Enum,  Float
@@ -42,6 +43,7 @@ class Confs(Base):
     pr = Column(String(30), primary_key=True)
     conf_id = Column(String(30))
     conf_password = Column(String(30))
+    conf_url = Column(String(200))
 
 class Roster(Base):
     __tablename__ = 'roster'

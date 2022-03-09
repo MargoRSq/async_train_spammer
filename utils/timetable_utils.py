@@ -18,18 +18,18 @@ days = ['Понедельник',
 
 def get_day_range(day: str):
     match day:
-        case 'понедельник' | '1' | 'пон':
-            return 5
+        case 'понедельник' | '1' | 'пн':
+            return range(0, 5)
         case 'вторник' | '2' | 'вт':
-            return 10
+            return range(5, 10)
         case 'среда' | '3' | 'ср':
-            return 15
+            return range(15, 20)
         case 'четверг' | '4' | 'чт':
-            return 20
+            return range(20, 25)
         case 'пятница' | '5' | 'пт':
-            return 25
-        case 'суббота' | '6' | 'суб':
-            return 30
+            return range(25, 30)
+        case 'суббота' | '6' | 'сб':
+            return range(30, 35)
         case _:
             return 0
 

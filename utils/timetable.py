@@ -10,8 +10,8 @@ def get_day_timetable(day: int):
     none_counter = 0
     places = PLACES_ODD if week_type == 1 else PLACES_EVEN
 
-    day_range = get_day_range(str(day))
-    text = days[day] + f"({places[day - 1]})" + ' - '
+    day_range = get_day_range(str(day + 1))
+    text = days[day] + f" ({places[day - 1]})" + ' - '
     text += f'Четная неделя ({week_number})' if week_number != 0 \
                                                    else f'Нечетная неделя ({week_number})'
     text += '\n'
@@ -25,14 +25,14 @@ def get_day_timetable(day: int):
         text += 'В этот день пар нет!'
     return text
 
-def get_week_rasp(week_number=get_week_num()):
+def get_range_rasp(week_number=get_week_num(), rng=range(0, 30)):
     week_timetable = nech if week_number % 2 == 1 else ch
     none_counter = 0
 
     text = f'Четная неделя ({week_number})' if week_number != 0 \
                                                    else f'Нечетная неделя ({week_number})'
     text += '\n'
-    for class_num in range(0, 30):
+    for class_num in rng:
         text += days[class_num // 5] + '\n' if class_num % 5 == 0 else ''
         none_counter = 0 if class_num % 5 == 0 else none_counter
         class_name = week_timetable[class_num][0]
@@ -44,3 +44,10 @@ def get_week_rasp(week_number=get_week_num()):
             text += 'В этот день пар нет!' + '\n'
             none_counter = 0
     return text
+
+def get_weekday_rasp(day: str, week_number: int = get_week_num()):
+    rng = get_day_range(day)
+    if rng:
+        return get_range_rasp(rng=rng, week_number=week_number)
+    else:
+        return "Не нашел такого дня недели"
