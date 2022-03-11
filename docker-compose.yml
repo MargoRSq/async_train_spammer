@@ -10,7 +10,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
-      - "3000:3000"
+      - "5432:5432"
   app:
     build: .
     env_file:
@@ -20,8 +20,6 @@ services:
     deploy:
       restart_policy:
           condition: on-failure
-          delay: 1s
           max_attempts: 3
-          window: 120s
 volumes:
      pgdata:
