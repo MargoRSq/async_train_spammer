@@ -15,7 +15,7 @@ FROM python:3.10.2-alpine3.14
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
-RUN apk add --no-cache gcc musl-dev python3-dev libffi-dev openssl-dev g++
+RUN apk add --no-cache gcc musl-dev python3-dev libffi-dev openssl-dev g++ libxslt-dev zlib-dev jpeg-dev make
 
 WORKDIR /code
 

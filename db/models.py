@@ -1,7 +1,6 @@
-from ast import Str
 import enum
 
-from sqlalchemy import Column, Integer, String, Enum,  Float
+from sqlalchemy import Column, Integer, String, Enum
 
 from db.db import engine, Base
 
@@ -53,4 +52,3 @@ class Roster(Base):
     fullname = Column(String(100))
 
 Base.metadata.create_all(engine)
-

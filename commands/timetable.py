@@ -1,8 +1,8 @@
 from typing import Tuple
-from vkbottle.bot import Blueprint, Bot, rules, Message
+from vkbottle.bot import Blueprint, rules, Message
 from vkbottle.dispatch.rules.bot import DEFAULT_PREFIXES
 
-from utils.config import TOKEN, GROUP_ID, WEEKS_NUM
+from utils.config import WEEKS_NUM
 from utils.timetable_utils import get_weekday, get_week_num
 from utils.timetable_parser import get_new_timetable
 from utils.timetable import get_day_timetable, get_range_rasp, get_weekday_rasp
