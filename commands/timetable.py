@@ -1,9 +1,5 @@
-import datetime
-
 from typing import Tuple
 from vkbottle.bot import Blueprint, Bot, rules, Message
-from db.models import WeekType
-
 from vkbottle.dispatch.rules.bot import DEFAULT_PREFIXES
 
 from utils.config import TOKEN, GROUP_ID, WEEKS_NUM

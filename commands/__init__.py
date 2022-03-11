@@ -1,3 +1,3 @@
-from . import timetable
+from . import timetable, pres_parser
 
-bps = [timetable.bp]
+bps = [timetable.bp, pres_parser.bp]

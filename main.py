@@ -1,6 +1,6 @@
 from vkbottle.bot import Bot
 
-from utils.config import TOKEN, GROUP_ID
+from utils.config import TOKEN
 from commands import bps
 
 bot = Bot(TOKEN)
