@@ -1,12 +1,11 @@
 from typing import Tuple
-from vkbottle.bot import Blueprint, rules, Message, Bot
+from vkbottle.bot import Blueprint, rules, Message
 from vkbottle.dispatch.rules.bot import DEFAULT_PREFIXES
 from vkbottle import DocMessagesUploader
 
-from utils.config import TOKEN
+from utils.config import bot
 from utils.pres_parser import svg2pdf
 
-bot = Bot(TOKEN)
 bp = Blueprint()
 
 @bp.on.message(rules.CommandRule("преза", DEFAULT_PREFIXES, 2))

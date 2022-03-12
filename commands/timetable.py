@@ -3,7 +3,7 @@ from vkbottle.bot import Blueprint, rules, Message
 from vkbottle.dispatch.rules.bot import DEFAULT_PREFIXES
 
 from utils.config import WEEKS_NUM
-from utils.timetable_utils import get_weekday, get_week_num
+from utils.timetable_utils import get_weekday, get_week_num, get_valid_weekday
 from utils.timetable_parser import get_new_timetable
 from utils.timetable import get_day_timetable, get_range_rasp, get_weekday_rasp
 
@@ -28,17 +28,13 @@ async def today(m: Message, args: Tuple[str]) -> str:
 
 @bp.on.message(rules.CommandRule("сегодня", DEFAULT_PREFIXES))
 async def today(m: Message) -> str:
-    await m.answer(get_day_timetable(get_weekday()))
+    weekday = get_valid_weekday(get_weekday())
+    await m.answer(get_day_timetable(weekday))
 
 @bp.on.message(rules.CommandRule("завтра", DEFAULT_PREFIXES))
 async def tomorrow(m: Message) -> str:
-    week_day = get_weekday()
-    if week_day == 6:
-        text = "Вывожу расписание на понедельник"
-        text += get_day_timetable(0)
-    else:
-        text = get_day_timetable(week_day + 1)
-    await m.answer(text)
+    weekday = get_valid_weekday(get_weekday() + 1)
+    await m.answer(get_day_timetable(weekday))
 
 @bp.on.message(rules.CommandRule("нрасп", DEFAULT_PREFIXES))
 async def upload_new_rasp(m: Message) -> str:

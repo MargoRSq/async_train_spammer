@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from utils.config import SEM_START
 
 time = ['09:30-11:05', '11:20-12:55', '13:10-14:45', '15:25-17:00', '17:15-18:50']
@@ -33,3 +32,6 @@ def get_week_num():
 
 def get_weekday() -> int:
     return datetime.today().weekday()
+
+def get_valid_weekday(weekday: int) -> int:
+    return 0 if weekday == 6 else weekday

@@ -4,10 +4,9 @@ from utils.timetable_utils import (get_week_num,
                                    days, time)
 from utils.config import PLACES_EVEN, PLACES_ODD
 
-def get_day_timetable(day: int):
+def get_day_timetable(day: int, week_number: int = get_week_num()):
     rasp = get_rasp()
     ch, nech = rasp['ch'], rasp['nech']
-    week_number = get_week_num()
     week_type = week_number % 2
     week_timetable = nech if week_type == 1 else ch
     if (len(week_timetable) < 30):
