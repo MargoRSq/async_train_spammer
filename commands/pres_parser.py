@@ -21,4 +21,4 @@ async def today(m: Message, args: Tuple[str]) -> str:
         text = f'Slides: {pdf[2]}, seconds: {int(pdf[1])}'
         await m.answer(text, attachment=doc)
     except BaseException as e:
-        await m.answer(f'Чето пошло не так ({e})')
+        await m.answer(f'Что-то явно пошло не так:\n({e})')

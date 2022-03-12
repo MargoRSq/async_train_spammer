@@ -1,0 +1,62 @@
+[
+    {
+        "command": "!р",
+        "args": ["1 | пн | понедельник"],
+        "description": "",
+        "tag": "timetable"
+    },
+    {
+        "command": "!сегодня",
+        "args": [],
+        "description": "",
+        "tag": "timetable"
+    },
+    {
+        "command": "!завтра",
+        "args": [],
+        "description": "",
+        "tag": "timetable"
+    },
+    {
+        "command": "!нрасп",
+        "args": [],
+        "description": "файл .xlsx в нужном формате расписания",
+        "tag": "timetable"
+    },
+    {
+        "command": "!чет | нечет",
+        "args": [],
+        "description": "без !р вывести полное расписание четной или нечетной недели",
+        "tag": "timetable"
+    },
+    {
+        "command": "!неделя",
+        "args": [],
+        "description": "",
+        "tag": "timetable"
+    },
+    {
+        "command": "!преза",
+        "args": ["https://...mtuci.../svg/", "название_файла"],
+        "description": "",
+        "tag": "helpful"
+    },
+    {
+        "command": "!нсписок",
+        "args": [],
+        "description": "файл .json в формате {\"data\": [\"людь\", \"человек\"]}",
+        "tag": "helpful"
+    },
+    {
+        "command": "!список",
+        "args": [],
+        "description": "",
+        "tag": "helpful"
+    },
+    {
+        "command": "!помощь",
+        "args": ["!р | !преза"],
+        "description": "",
+        "tag": "helpful"
+    }
+]
