@@ -28,13 +28,17 @@ async def today(m: Message, args: Tuple[str]) -> str:
 
 @bp.on.message(rules.CommandRule("сегодня", DEFAULT_PREFIXES))
 async def today(m: Message) -> str:
-    weekday = get_valid_weekday(get_weekday())
-    await m.answer(get_day_timetable(weekday))
+    weekday = get_weekday() - 1
+    if weekday < 5:
+        timetable = get_day_timetable(weekday)
+        await m.answer(timetable)
 
 @bp.on.message(rules.CommandRule("завтра", DEFAULT_PREFIXES))
 async def tomorrow(m: Message) -> str:
-    weekday = get_valid_weekday(get_weekday() + 1)
-    await m.answer(get_day_timetable(weekday))
+    weekday = get_weekday()
+    if weekday < 4:
+        timetable = get_day_timetable(weekday)
+        await m.answer(timetable)
 
 @bp.on.message(rules.CommandRule("нрасп", DEFAULT_PREFIXES))
 async def upload_new_rasp(m: Message) -> str:
