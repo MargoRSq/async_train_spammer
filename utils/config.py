@@ -10,6 +10,7 @@ TOKEN: str = config("TOKEN")
 bot = Bot(TOKEN)
 
 GROUP_ID: int = int(config("GROUP_ID"))
+CHAT_ID: int = int(config("CHAT_ID"))
 WEEKS_NUM: int = int(config("WEEKS_NUM"))
 
 TOKEN: str = config("TOKEN")
