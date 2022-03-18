@@ -3,7 +3,7 @@ from utils.config import bot
 
 bp = Blueprint()
 
-triggers_array = ["@all", "@margosq", "zoom", "lms", "mtuci"]
+triggers_array = ["@all", "@margosq", "zoom", "lms", "mtuci", "нрасп"]
 
 check_phrase = lambda m: True if any(trg in m for trg in triggers_array) else False
 
