@@ -1,9 +1,13 @@
+import platform
+
 from datetime import datetime
 from starlette.config import Config
 from vkbottle.bot import Bot
 
-
-config = Config(".env")
+if (platform.system() == 'Darwin'):
+    config = Config(".env.local")
+else:
+    config = Config(".env.docker")
 
 DATABASE_URL: str = config("SQLALCH_DATABASE_URL")
 TOKEN: str = config("TOKEN")

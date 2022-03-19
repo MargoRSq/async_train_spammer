@@ -28,15 +28,18 @@ async def today(m: Message, args: Tuple[str]) -> str:
 
 @bp.on.message(rules.CommandRule("сегодня", DEFAULT_PREFIXES))
 async def today(m: Message) -> str:
-    weekday = get_weekday() - 1
-    if weekday < 5:
+    weekday = get_weekday()
+    if weekday != 6:
         timetable = get_day_timetable(weekday)
         await m.answer(timetable)
 
 @bp.on.message(rules.CommandRule("завтра", DEFAULT_PREFIXES))
 async def tomorrow(m: Message) -> str:
-    weekday = get_weekday()
-    if weekday < 4:
+    weekday = get_weekday() + 1
+    if weekday == 6:
+        weeknum =  get_week_num() + 1
+        timetable = get_day_timetable(0, weeknum)
+    else:
         timetable = get_day_timetable(weekday)
         await m.answer(timetable)
 

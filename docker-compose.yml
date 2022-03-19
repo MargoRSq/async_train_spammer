@@ -14,7 +14,7 @@ services:
   app:
     build: .
     env_file:
-      - .env
+      - .env.docker
     depends_on:
       - db
     deploy:
