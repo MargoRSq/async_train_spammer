@@ -14,6 +14,7 @@ TOKEN: str = config("TOKEN")
 bot = Bot(TOKEN)
 
 GROUP_ID: int = int(config("GROUP_ID"))
+MYUSER_ID: int = int(config("MYUSER_ID"))
 CHAT_ID: int = int(config("CHAT_ID"))
 WEEKS_NUM: int = int(config("WEEKS_NUM"))
 
