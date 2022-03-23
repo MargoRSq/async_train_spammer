@@ -13,6 +13,8 @@ services:
       - "${PG_PORT}:5432"
   app:
     build: .
+    environment:
+    - TZ=Europe/Moscow
     env_file:
       - .env.docker
     depends_on:
