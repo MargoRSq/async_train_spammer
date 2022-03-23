@@ -32,6 +32,3 @@ def get_week_num():
 
 def get_weekday() -> int:
     return datetime.today().weekday()
-
-def get_valid_weekday(weekday: int) -> int:
-    return 0 if weekday == 6 else weekday

@@ -25,6 +25,8 @@ async def today(m: Message) -> str:
 @bp.on.message(rules.CommandRule("список", DEFAULT_PREFIXES))
 async def today(m: Message) -> str:
     lst = get_roster()
+    if not lst:
+        return await m.answer("Во мне нет списка, загрузите .json в меня!")
     text = ''
     for i, item in enumerate(lst):
         text += f'{i + 1}. {item[0]}\n'

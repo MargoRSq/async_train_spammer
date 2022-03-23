@@ -4,7 +4,7 @@ spaces = '&#12288;'
 
 def parse_arg(d: dict) -> str:
     s = ''
-    s += f"\tcmd: {d['command']}"
+    s += f"\t•cmd: {d['command']}"
     s += "".join([f" arg{i + 1} " for i in range(len(d['args']))]) + '\n'
     if d['args']:
         s += f"{spaces}args: {d['args']}\n"
