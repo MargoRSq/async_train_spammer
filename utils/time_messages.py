@@ -21,20 +21,7 @@ from utils.config import (TOKEN, CAT_TOKEN, CHAT_ID,
 
 bot = Bot(TOKEN)
 
-def select_pivoday():
-    match get_weekday():
-        case 0:
-            return MONDAY
-        case 1:
-            return TUESDAY
-        case 2:
-            return WEDNESDAY
-        case 3:
-            return THURSDAY
-        case 4:
-            return FRIDAY
-        case 5:
-            return SATURDAY
+pivoday = [MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY]
 
 async def good_night():
     weekday = get_weekday() + 1
@@ -57,7 +44,7 @@ async def good_morning():
         timetable = get_day_timetable(weekday)
         await bot.api.messages.send(
             message = f'Доброе утро, пупсики, воть расписание на сегодня :3\n{timetable}',
-            attachment=select_pivoday(),
+            attachment=pivoday[weekday],
             chat_id=CHAT_ID,
             random_id=0)
 

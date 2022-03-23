@@ -16,7 +16,7 @@ def get_day_timetable(day: int, week_number: int = get_week_num()):
 
     day_range = get_day_range(str(day + 1))
     text = days[day] + f" ({places[day - 1]})" + ' - '
-    text += f'Четная неделя ({week_number})' if week_number == 0 \
+    text += f'Четная неделя ({week_number})' if week_type == 0 \
                                                    else f'Нечетная неделя ({week_number})'
     text += '\n'
     for class_num in day_range:
@@ -33,9 +33,10 @@ def get_range_rasp(week_number=get_week_num(), rng=range(0, 30)):
     rasp = get_rasp()
     ch, nech = rasp['ch'], rasp['nech']
     week_timetable = nech if week_number % 2 == 1 else ch
+    week_type = week_number % 2
     none_counter = 0
 
-    text = f'Четная неделя ({week_number})' if week_number == 0 \
+    text = f'Четная неделя ({week_number})' if week_type == 0 \
                                                    else f'Нечетная неделя ({week_number})'
     text += '\n'
     for class_num in rng:
