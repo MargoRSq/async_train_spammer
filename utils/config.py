@@ -11,6 +11,10 @@ else:
 
 DATABASE_URL: str = config("SQLALCH_DATABASE_URL")
 TOKEN: str = config("TOKEN")
+TINDER_TOKEN_SVYAT: str = config("TINDER_TOKEN_SVYAT")
+TINDER_TOKEN_DANYA: str = config("TINDER_TOKEN_DANYA")
+TINDER_TOKEN_ILYA: str = config("TINDER_TOKEN_ILYA")
+TINDER_TOKEN_VITYA: str = config("TINDER_TOKEN_VITYA")
 bot = Bot(TOKEN)
 
 GROUP_ID: int = int(config("GROUP_ID"))
