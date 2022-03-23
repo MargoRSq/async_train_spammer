@@ -9,7 +9,7 @@ from io import BytesIO
 from vkbottle import PhotoMessageUploader
 from vkbottle.bot import Bot
 
-from utils.timetable_utils import get_valid_weekday, get_week_num, get_weekday
+from utils.timetable_utils import get_week_num, get_weekday
 from utils.timetable import get_day_timetable
 from utils.config import (TOKEN, CAT_TOKEN, CHAT_ID,
                           MONDAY,
