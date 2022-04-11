@@ -47,9 +47,10 @@ async def lul(m: Message) -> str:
        await send_if_link(m, m, MsgType.FWD.value)
 
 async def send_if_link(m: Message, wtr: Message, tp: MsgType):
-    if tp == MsgType.FWD.value:
+    link = ''
+    if tp == MsgType.FWD.value and m.attachments and m.attachments.link:
         link = m.attachments[0].link.url
-    else:
+    elif wtr.reply_message.attachments and wtr.reply_message.attachments.link:
         link = wtr.reply_message.attachments[0].link.url
     if (check_phrase(link)):
         return await wtr.answer(link, user_id=MYUSER_ID)

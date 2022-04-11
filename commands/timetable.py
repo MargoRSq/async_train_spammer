@@ -52,7 +52,8 @@ async def upload_new_rasp(m: Message) -> str:
 @bp.on.message(rules.CommandRule("неделя", DEFAULT_PREFIXES))
 async def tomorrow(m: Message) -> str:
     wn = get_week_num()
-    text = f'({wn})Четная неделя! Осталось: {WEEKS_NUM - wn}!\n['
+    ch = 'Че' if wn % 2 == 0 else 'Нече'
+    text = f'({wn}){ch}тная неделя! Осталось: {WEEKS_NUM - wn}!\n['
     for _ in range(wn):
         text += '💩'
     for _ in range(WEEKS_NUM - wn):
