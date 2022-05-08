@@ -13,25 +13,35 @@ bp = Blueprint()
 @bp.on.message(rules.CommandRule("лайки", DEFAULT_PREFIXES, 2))
 async def today(m: Message, args: Tuple[str]) -> str:
     if m.chat_id in [1, 7, 8]:
-        try:
+        # try:
             token = tokens[args[0]]
             count = await get_likes_count(token)
             await m.answer(f'работаю друк, тебя лайкнуло {count} девачек и мальчиков')
             photos = await get_likes(token, int(args[1]))
             for girl in photos:
                 await m.answer('оп', attachment=girl)
-        except BaseException as e:
-            await m.answer(e)
+        # except BaseException as e:
+        #     await m.answer(e)
 
 async def get_likes_count(token: str):
-    headers = {"x-auth-token": token}
+    headers = {"x-auth-token": token,
+                "Accept":"application/json",
+                "app_version":"1032701",
+                "platform":"ios",
+                "User-Agent":"Tinder/7.5.3 (iPhone; iOS 10.3.2: Scale/2.00)",
+                "Content-Type":"application/json"}
     r = requests.get("https://api.gotinder.com/v2/fast-match/count", headers=headers)
     data_json = r.json()
     return data_json['data']['count']
 
 
 async def get_likes(token: str, amount: int = 10):
-    headers = {"x-auth-token": token}
+    headers = {"x-auth-token": token,
+                "Accept":"application/json",
+                "app_version":"1032701",
+                "platform":"ios",
+                "User-Agent":"Tinder/7.5.3 (iPhone; iOS 10.3.2: Scale/2.00)",
+                "Content-Type":"application/json"}
     r = requests.get("https://api.gotinder.com/v2/fast-match/teasers", headers=headers)
     data_json = r.json()
 
