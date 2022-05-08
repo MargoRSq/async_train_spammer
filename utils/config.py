@@ -1,8 +1,11 @@
+import sys
 import platform
 
 from datetime import datetime
 from starlette.config import Config
 from vkbottle.bot import Bot
+
+sys.dont_write_bytecode = True
 
 if (platform.system() == 'Darwin'):
     config = Config(".env.local")
@@ -16,12 +19,14 @@ TINDER_TOKEN_DANYA: str = config("TINDER_TOKEN_DANYA")
 TINDER_TOKEN_ILYA: str = config("TINDER_TOKEN_ILYA")
 TINDER_TOKEN_VITYA: str = config("TINDER_TOKEN_VITYA")
 TINDER_TOKEN_VASYA: str = config("TINDER_TOKEN_VASYA")
+TINDER_TOKEN_PETYA: str = config("TINDER_TOKEN_VASYA")
 tokens = {
     'киев': TINDER_TOKEN_DANYA ,
     'свят': TINDER_TOKEN_SVYAT ,
     'илюха': TINDER_TOKEN_ILYA ,
     'ветя' : TINDER_TOKEN_VITYA,
-    'вася' : TINDER_TOKEN_VASYA
+    'вася' : TINDER_TOKEN_VASYA,
+    'питя' : TINDER_TOKEN_PETYA
 }
 bot = Bot(TOKEN)
 
